@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Poker"
         mc:Ignorable="d"
-        Title="Texas Hold'em Poker" Height="950.96" Width="1400" ResizeMode="CanMinimize" Closing="Window_Closing">
+        Title="Texas Hold'em Poker" Height="950.96" Width="1400" ResizeMode="CanMinimize" Closing="Window_Closing" Icon="/icon.jpeg">
     <Window.Background>
         <ImageBrush ImageSource="/poker table.png" Stretch="None" TileMode="None" Opacity="0.6"/>
     </Window.Background>

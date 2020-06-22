@@ -1,0 +1,27 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="card bg.jpg" />
+    <None Remove="dealer-bg.jpg" />
+    <None Remove="poker table.png" />
+    <None Remove="X.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Combinatorics" Version="1.1.0.19" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="card bg.jpg" />
+    <Resource Include="dealer-bg.jpg" />
+    <Resource Include="poker table.png" />
+    <Resource Include="X.jpg" />
+  </ItemGroup>
+
+</Project>

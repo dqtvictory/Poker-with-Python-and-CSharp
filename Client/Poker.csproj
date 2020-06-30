@@ -15,10 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Combinatorics" Version="1.1.0.19" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Resource Include="card bg.jpg" />
     <Resource Include="dealer-bg.jpg" />
     <Resource Include="icon.jpeg" />

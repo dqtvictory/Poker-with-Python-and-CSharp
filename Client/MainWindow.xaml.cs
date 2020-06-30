@@ -3,6 +3,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Shapes;
 
 namespace Poker
@@ -14,17 +15,22 @@ namespace Poker
     {
         Game MyGame;
         Client myClient;
+        string chatTextBoxDefault = "Send a message to chat";
         public StackPanel[] CommunityPanels;
         public TextBlock[] PotBlocks;
 
         public MainWindow(string myName, Client myClient)
         {
             InitializeComponent();
-            if (myName == "TrungDam")
-                gmPanel.Visibility = Visibility.Visible;
+            SetDefaultValue(chatTextBox);
+            
             MyGame = new Game(myName);
             this.myClient = myClient;
             myClient.MyGame = MyGame;
+
+            // Integrate chat box and show a welcome message
+            chatView.DataContext = MyGame.MyChat;
+            MyGame.MyChat.Add("Welcome to Poker by DQT!");
 
             CommunityPanels = new StackPanel[] { community0, community1, community2, community3, community4 };
             PotBlocks = new TextBlock[] { pot0, pot1, pot2, pot3, pot4 };
@@ -44,7 +50,6 @@ namespace Poker
                 Player newPlayer = new Player(nameBlocks[i], cashBlocks[i], bettingBlocks[i], dealerChips[i], avatars[i], cards0[i], cards1[i]);
                 MyGame.AddPlayer(newPlayer, i);
             }
-            myClient.StartListening();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -54,7 +59,10 @@ namespace Poker
 
         private void startButton_Click(object sender, RoutedEventArgs e)
         {
-            myClient.SendToServer("start", "");
+            if (startButton.Content.ToString() == "Update Game's state")
+                myClient.SendToServer("request_state", "");
+            else
+                myClient.SendToServer("start", "");
         }
 
         private void blindsButton_Click(object sender, RoutedEventArgs e)
@@ -119,7 +127,6 @@ namespace Poker
 
         private void betAmount_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            Player self = MyGame.Players[MyGame.MySeat];
             Regex regex = new Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
         }
@@ -147,6 +154,62 @@ namespace Poker
                 betButton.Content = "All in";
             else
                 betButton.Content = "Bet";
+        }
+
+        private void sendChat()
+        {
+            myClient.SendToServer("chat", chatTextBox.Text);
+        }
+
+        private void SetDefaultValue(TextBox textBox)
+        {            
+            textBox.Text = chatTextBoxDefault;
+            textBox.Foreground = Brushes.Gray;
+            sendChatButton.IsEnabled = false;
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox source = (TextBox)e.OriginalSource;
+            if (source.Foreground == Brushes.Black)
+                return;
+            source.Text = string.Empty;
+            source.Foreground = Brushes.Black;
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox source = (TextBox)e.OriginalSource;
+            if (string.IsNullOrEmpty(source.Text))
+                SetDefaultValue(source);
+        }        
+
+        private void chatTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(chatTextBox.Text))
+                sendChatButton.IsEnabled = false;
+            else
+                sendChatButton.IsEnabled = true;
+        }
+
+        private void chatTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Return && sendChatButton.IsEnabled)
+            {
+                sendChat();
+                chatTextBox.Text = string.Empty;
+            }
+        }
+
+        private void sendChatButton_Click(object sender, RoutedEventArgs e)
+        {
+            sendChat();
+            SetDefaultValue(chatTextBox);
+        }
+
+        private void clearButton_Click(object sender, RoutedEventArgs e)
+        {
+            MyGame.MyChat.Clear();
         }
     }
 }

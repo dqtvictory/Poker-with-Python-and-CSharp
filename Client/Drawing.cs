@@ -28,19 +28,19 @@ namespace Poker
                 {
                     Text = suit,
                     TextWrapping = TextWrapping.Wrap,
-                    Width = 35,
-                    Height = 35,
+                    Width = 25,
+                    Height = 24.5,
                     HorizontalAlignment = HorizontalAlignment.Right,
                     VerticalAlignment = VerticalAlignment.Top,
-                    FontSize = 32,
+                    FontSize = 24,
                     TextAlignment = TextAlignment.Center,
                 };
                 TextBlock cardValue = new TextBlock()
                 {
                     Text = value,
                     TextWrapping = TextWrapping.Wrap,
-                    Height = 65,
-                    FontSize = 48,
+                    Height = 45.5,
+                    FontSize = 32,
                     TextAlignment = TextAlignment.Center,
                     FontFamily = new FontFamily("Georgia"),
                 };
@@ -78,6 +78,19 @@ namespace Poker
 
         public static void UpdateUI()
         {
+            if (MyGame.WinnerAnnounced)
+            {
+                // If winner has just been announced, don't update the UI to keep displaying the hand showdown
+                MyWindow.startButton.Content = "Update Game's state";
+                MyWindow.startButton.IsEnabled = true;
+                MyWindow.actionPanel.Visibility = Visibility.Hidden;
+                MyGame.WinnerAnnounced = false;
+                return;
+            }
+            // If player's name is a GM's name, show the GM's control panel
+            if (MyGame.MyName == Game.GM_NAME)
+                MyWindow.gmPanel.Visibility = Visibility.Visible;
+
             // Update each player's labels
             for (int i = 0; i < MyGame.Players.Length; i++)
             {
@@ -148,7 +161,7 @@ namespace Poker
                 if (i == 0)
                     MyWindow.PotBlocks[i].Text = "Pot: " + MyGame.Pots[i].ToString();
                 else
-                    MyWindow.PotBlocks[i].Text = MyGame.Pots[i].ToString();
+                    MyWindow.PotBlocks[i].Text = $"SP{i}: " + MyGame.Pots[i].ToString();
             }
 
             // Show community cards
@@ -194,7 +207,7 @@ namespace Poker
                 else
                 {
                     MyWindow.checkCallButton.Content = "Call";
-                    if (maximumSpending <= MyGame.HighestBet)
+                    if (maximumSpending <= MyGame.HighestBet || MyGame.NoRaising)
                     {
                         MyWindow.betButton.Visibility = Visibility.Hidden;
                         MyWindow.betAmount.Visibility = Visibility.Hidden;
@@ -216,13 +229,17 @@ namespace Poker
                 MyWindow.actionPanel.Visibility = Visibility.Visible;
             }
 
-            // If game is currently on, disable Start button and keep game's state as-is, otherwise enable Start button and also clear reset game's state
+            // If game is currently on, disable Start button, otherwise enable Start button and clear the UI as the game's state resets
             if (MyGame.On)
+            {
                 MyWindow.startButton.IsEnabled = false;
+                MyWindow.startButton.Content = "START NEW GAME";
+            }
             else
             {
                 ClearUI();
                 MyWindow.startButton.IsEnabled = true;
+                MyWindow.startButton.Content = "START NEW GAME";
             }
 
             // Show blinds on title bar

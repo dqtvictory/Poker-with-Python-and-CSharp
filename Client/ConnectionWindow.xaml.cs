@@ -24,8 +24,6 @@ namespace Poker
             SetDefaultValue(nameTextBox);
             SetDefaultValue(IPTextBox);
             SetDefaultValue(portTextBox);
-            Client.AddElemToSendingProtocol();
-            Client.AddElemToReceivingProtocol();
 
             //Testing stuffs
             
@@ -138,6 +136,7 @@ namespace Poker
             Client client = new Client(ServerIP, ServerPort);
             if (client.PlayerConnect(myName))
             {
+                client.StartListening();
                 new MainWindow(myName, client).Show();
                 Close();
             }

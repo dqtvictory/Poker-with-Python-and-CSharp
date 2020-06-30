@@ -3,7 +3,7 @@ Handles the main game's flow
 """
 
 from itertools import cycle, combinations
-from random import choice
+import random
 from time import sleep
 from Deck import Deck
 from Player import Player
@@ -45,22 +45,40 @@ class Game:
         self.chat.update_chat(f"Blinds set to {sb}/{bb}")
 
 
-    def add_player(self, name, player_socket):
+    def add_player(self, name, player_socket, name_changed):
         """
         Adds a player to the list of players
         :name: str
         :player_socket: socket object corresponding to a player
+        :name_changed: bool
         :return: the Player object created
         """
         player = Player(name, player_socket)
+
+        # Check if the table is full, the player is then disconnected
+        for p in self.players:
+            if not p:
+                break
+        else:
+            self.remove_player(player)
+            return None
+
         self.chat.update_chat(f"{player} has been added.")
-        # Automatically assign a seat for now
+        
+        # Assign a random seat
         while True:
-            i = choice(range(MAX_PLAYERS))
+            i = random.choice(range(MAX_PLAYERS))
             if not self.players[i]:
                 self.player_sit(player, i)
                 break
+        if name_changed:
+            # If player's name is changed because the chosen name is taken, send the new name to the player
+            player.send_to_client('name', name)
+            sleep(1)
         self.send_game_state()
+        if name_changed:
+            # Notify the new name to the player
+            player.send_to_client('message', f"You picked an existed name. Your new name is now {name}.")
         return player
 
 
@@ -76,6 +94,18 @@ class Game:
         self.chat.update_chat(f"{player} has been removed.")
         self.send_game_state()
 
+    def check_name_exist(self, name):
+        """
+        Check if a name already exists
+        :name: str
+        :return: bool
+        """
+        for player in self.players:
+            if not player:
+                continue
+            if name == player.name:
+                return False
+        return True
 
     def player_sit(self, player, seat):
         """
@@ -99,6 +129,20 @@ class Game:
         self.chat.update_chat(f"{player} stood up.")
 
 
+    def can_start(self):
+        """
+        Check if current game state allows starting a new game
+        """
+        count_players_with_chip = 0
+        for player in self.players:
+            if not player or not player.stack:
+                continue
+            count_players_with_chip += 1
+        if self.sb == 0 or self.bb == 0 or count_players_with_chip <= 1:
+            return False
+        return True
+
+
     def new_game(self):
         """
         Starts a new game
@@ -107,7 +151,7 @@ class Game:
         self.deck = Deck()
         self.round = 0
         self.highest_bet = self.bb
-        self.second_highest_bet = self.sb
+        self.second_highest_bet = 0
         self.community = []
         self.pot_players = [[]]
 
@@ -121,6 +165,7 @@ class Game:
                 continue
             if not player.stack:
                 player.in_hand = False
+                player.hand = []
                 continue
             if first_player_seat == -1:
                 first_player_seat = i
@@ -262,6 +307,8 @@ class Game:
         in_hand = []
         not_all_in = []
         actor_index = self.players.index(actor)
+        no_raising = False
+
         for i, player in enumerate(self.players):
             if player and player.in_hand:
                 in_hand.append(i)
@@ -309,8 +356,7 @@ class Game:
                     if i == actor_index:
                         self.acting = next(find_next_acting)
                         break
-            if call_amount == actor.stack:
-                actor.all_in = True
+            if actor.all_in:
                 not_all_in.remove(actor_index)
                 call_all_in = "ALL IN "
             self.chat.update_chat(f"{actor} called {call_all_in}{call_amount} chips.")
@@ -351,6 +397,9 @@ class Game:
 
         # After an action, the following lines of code handle the game's state
 
+        if len(not_all_in) == 1:  # Testing
+            no_raising = True
+
         if len(in_hand) == 1:  # If everyone folds and only 1 player is left, game over
             self.end_game()
 
@@ -371,15 +420,17 @@ class Game:
                     if i == self.acting:
                         self.last_to_act = next(find_last_to_act)
                         break
-            else:  # When everyone has gone all in, go to show down
+            else:
+                # When everyone has gone all in, go to show down
                 self.draw_the_rest()
                 self.end_game()
-                self.send_game_state()
+                # self.send_game_state()  # REVIEW
                 return
 
             if self.round == 4:  # If it's showdown, now it's time to find the winner(s)
                 self.showdown()
                 self.end_game()
+                return  # REVIEW
             elif self.round == 1:  # Preflop -> Flop
                 self.community = self.deck.deal_cards(3)
                 self.chat.update_chat("Flop: " + str(self.community))
@@ -390,7 +441,7 @@ class Game:
                 self.community.append(self.deck.deal_cards(1)[0])
                 self.chat.update_chat("River: " + str(self.community[4]))
 
-        self.send_game_state()
+        self.send_game_state(no_raising)
 
 
     def announce_winners(self, results):
@@ -402,7 +453,7 @@ class Game:
         msg = ""
         for i, result in enumerate(results):
             winning_amount, winners, winning_hand = result
-            win = "wins" if len(winners) == 1 else "split"
+            win = "win" if len(winners) == 1 else "split"
             if i == 0:
                 pot_name = "main pot"
             else:
@@ -412,7 +463,7 @@ class Game:
             else:
                 msg += f"{', '.join(map(str, winners))} {win} {winning_amount} chips from the {pot_name} with {ranking_reader(winning_hand)}\n"
         sleep(0.5)  # Sleep for 0.5 sec to make sure every previous message is properly parsed and executed by clients before sending the message
-        self.send_all('message', msg)
+        self.send_all('announcement', msg)
         
 
     def send_all(self, protocol, msg):
@@ -467,16 +518,19 @@ class Game:
         self.send_all('showdown', msg)
 
 
-    def send_game_state(self):
+    def send_game_state(self, *args):
         """
         Shortcut to send game's state to all players
         """
-        msg = self.game_info()
-        sleep(0.5)  # Sleep for 0.5 sec to make sure every previous message is properly parsed and executed by clients before sending the message
+        if args and args[0]:
+            msg = self.game_info(True)
+        else:
+            msg = self.game_info()
+        sleep(0.5)  # Sleep for 0.5 sec to make sure every previous message is properly parsed and executed by clients before sending the current message
         self.send_all('game', msg)
 
 
-    def game_info(self):
+    def game_info(self, *args):
         """
         Generate a string containing all info of current game to send over the network
         :return: str
@@ -511,8 +565,13 @@ class Game:
 
         # Community
         if len(self.community) == 0:
-            msg += "CM()"
+            msg += "CM() "
         else:
-            msg += f"CM({':'.join(map(str, self.community))})"
-
+            msg += f"CM({':'.join(map(str, self.community))}) "
+        
+        # Test functionality (no betting)
+        if (args and args[0]):
+            msg += f"NR(1)"
+        else:
+            msg += f"NR(0)"
         return msg            

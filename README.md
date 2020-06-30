@@ -1,4 +1,59 @@
 # Poker-with-Python-and-CSharp
+
+
+## HOW TO:
+
+__Server side:__
+- Must have Python 3. No extra dependencies or 3rd party libraries required
+- Must have an open port for server's side communication. The OS must also allow traffic through this port. For connection through the Internet, NAT must be set to bridge connection from the local machine (via the said port) to the Internet (via an open port on the modem)
+- Must support multi-threading to handle multiple client's connection at once
+- To start the server, set the correct IPv4 __local network's__ address to the `SERVER_IP` variable in `Server.py` and a port to `PORT`. Leave the `BUFFER` variable unchanged to avoid bad surprises. Run `python Server.py`. Note that since almost no computer is connected directly to the Internet without going through a modem, server will not work if `SERVER_IP` is set to a public IP
+- Once the server starts to listen to connections, clients can now jump in
+
+__Client side:__
+- Must have .NET Core v3 installed. If not, user will be prompted to download and install
+- Windows 10
+- Screen resolution 720p (1280 x 720) or better
+- At least 1GB of RAM
+
+__Build from source:__
+- Must have Visual Studio 2019 installed
+- Open the `Poker.sln` solution. If missing any packages, VS will prompt user to download
+- Choose the Release scheme, then Build (Ctrl + B)
+
+
+## Update 1:
+
+__Changes made to the Server:__
+- Name check functionality added. If a name is found duplicated, automatically adds a digit after the name to make it unique
+- Automatically disconnect new players if the table is already full
+- Check if game can start functionality added. If a GM requests to start a game while there aren't enough players or blinds are not set correctly, game will not start
+
+
+__Changes made to the Client:__
+- Interface is resized smaller to fit in lower-resolution screens but still looks decent on 4K monitors
+- Chat box added with fully working chat between players (UTF-8 encoding)
+- Cleaner UI: lower part of the window is added to hold player's action panel and the chat box, leaving the main part of the UI free from controls (buttons, text boxes...)
+- Messages to display sent by the server used to be shown in a message box, which makes the UI stop being responsive while the message is being displayed. Messages are now shown directly in the chat box prefixed by the server's timestamp
+
+
+__Bugs fixed:__
+- If there is only one player left to call or fold while facing an all-in, this player will not be able to re-raise since there is no one left to call.
+- Showdown now lasts for as long as the Game Master wants. Before, a showdown lasted for only not even a second, but is kept visually because of the message box's nature to block the UI. Since this is not anymore the case, showdown needs to last longer so that players can see others' hands until the Game Master tells the server to go on.
+
+
+__Stuffs to do:__
+- Better UI (animations, sounds, card highlight...)
+- More GM functions (kick player, force a player to act, full control over game's state)
+- Timer
+- Avatar
+- Other Poker rules (Stud, Pot-Limit Omaha, etc...)
+- Better code refactoring
+- Fix more bugs
+
+
+## Initial Upload:
+
 A long but rewarding personal project
 
 Server side is coded in pure Python

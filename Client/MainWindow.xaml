@@ -5,78 +5,82 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Poker"
         mc:Ignorable="d"
-        Title="Texas Hold'em Poker" Height="950.96" Width="1400" ResizeMode="CanMinimize" Closing="Window_Closing" Icon="/icon.jpeg">
-    <Window.Background>
-        <ImageBrush ImageSource="/poker table.png" Stretch="None" TileMode="None" Opacity="0.6"/>
-    </Window.Background>
-    <Grid Focusable="True">
-        <Ellipse x:Name="avatarP0" HorizontalAlignment="Left" Height="75" Margin="436,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="76" Fill="White" Visibility="Hidden"/>
-        <Ellipse x:Name="avatarP1" HorizontalAlignment="Left" Height="75" Margin="882,80,0,0" Stroke="Black" VerticalAlignment="Top" Width="76" Fill="White" Visibility="Hidden"/>
-        <Ellipse x:Name="avatarP2" HorizontalAlignment="Left" Height="75" Margin="1243,384,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="White" Visibility="Hidden"/>
-        <Ellipse x:Name="avatarP3" HorizontalAlignment="Left" Height="76" Margin="883,760,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="White" Visibility="Hidden"/>
-        <Ellipse x:Name="avatarP4" HorizontalAlignment="Left" Height="75" Margin="436,760,0,0" Stroke="Black" VerticalAlignment="Top" Width="76" Fill="White" Visibility="Hidden"/>
-        <Ellipse x:Name="avatarP5" HorizontalAlignment="Left" Height="75" Margin="93,384,0,0" Stroke="Black" VerticalAlignment="Top" Width="75" Fill="White" Visibility="Hidden"/>
-        <TextBlock x:Name="nameP0" HorizontalAlignment="Left" Margin="393,160,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bell MT" FontSize="20" Width="162" Height="25" TextAlignment="Center" FontWeight="Bold" Visibility="Hidden">
+        Title="Texas Hold'em Poker" Height="881" Width="1050" ResizeMode="CanMinimize" Closing="Window_Closing" Icon="/icon.jpeg" Background="{x:Null}">
+    <Grid Focusable="True" VerticalAlignment="Top" Height="849.04">
+        <Grid.Background>
+            <ImageBrush ImageSource="/poker table.png" Opacity="0.65"/>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="697.26"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Ellipse x:Name="avatarP0" HorizontalAlignment="Left" Height="56.25" Margin="327,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="56.25" Fill="White" Visibility="Hidden"/>
+        <Ellipse x:Name="avatarP1" HorizontalAlignment="Left" Height="56.25" Margin="661.5,50,0,0" Stroke="Black" VerticalAlignment="Top" Width="56.25" Fill="White" Visibility="Hidden"/>
+        <Ellipse x:Name="avatarP2" HorizontalAlignment="Left" Height="56.25" Margin="932.25,288,0,0" Stroke="Black" VerticalAlignment="Top" Width="56.25" Fill="White" Visibility="Hidden"/>
+        <Ellipse x:Name="avatarP3" HorizontalAlignment="Left" Height="56.25" Margin="661.5,570,0,0" Stroke="Black" VerticalAlignment="Top" Width="56.25" Fill="White" Visibility="Hidden"/>
+        <Ellipse x:Name="avatarP4" HorizontalAlignment="Left" Height="56.25" Margin="327,570,0,0" Stroke="Black" VerticalAlignment="Top" Width="56.25" Fill="White" Visibility="Hidden"/>
+        <Ellipse x:Name="avatarP5" HorizontalAlignment="Right" Height="56.25" Margin="0,288,932.25,0" Stroke="Black" VerticalAlignment="Top" Width="56.25" Fill="White" Visibility="Hidden"/>
+        <TextBlock x:Name="nameP0" HorizontalAlignment="Left" Margin="294.75,110,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bell MT" FontSize="16" Width="120" Height="18.75" TextAlignment="Center" FontWeight="Bold" Visibility="Hidden">
             <TextBlock.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock x:Name="nameP1" HorizontalAlignment="Left" Margin="840,160,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bell MT" FontSize="20" Width="161" Height="25" TextAlignment="Center" FontWeight="Bold" Visibility="Hidden">
+        <TextBlock x:Name="nameP1" HorizontalAlignment="Left" Margin="630,110,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bell MT" FontSize="16" Width="120" Height="18.75" TextAlignment="Center" FontWeight="Bold" Visibility="Hidden">
             <TextBlock.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock x:Name="nameP2" HorizontalAlignment="Left" Margin="1200,464,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bell MT" FontSize="20" Width="161.739130434783" Height="25" TextAlignment="Center" FontWeight="Bold" Visibility="Hidden">
+        <TextBlock x:Name="nameP2" HorizontalAlignment="Left" Margin="900,348,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bell MT" FontSize="16" Width="120" Height="18.75" TextAlignment="Center" FontWeight="Bold" Visibility="Hidden">
             <TextBlock.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock x:Name="nameP3" HorizontalAlignment="Left" Margin="839,706,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bell MT" FontSize="20" Width="162" Height="25" TextAlignment="Center" FontWeight="Bold" Visibility="Hidden">
+        <TextBlock x:Name="nameP3" HorizontalAlignment="Left" Margin="630,529.5,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bell MT" FontSize="16" Width="120" Height="18.75" TextAlignment="Center" FontWeight="Bold" Visibility="Hidden">
             <TextBlock.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock x:Name="nameP4" HorizontalAlignment="Left" Margin="393,706,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bell MT" FontSize="20" Width="162" Height="25" TextAlignment="Center" FontWeight="Bold" Visibility="Hidden">
+        <TextBlock x:Name="nameP4" HorizontalAlignment="Left" Margin="294.75,529.5,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bell MT" FontSize="16" Width="120" Height="18.75" TextAlignment="Center" FontWeight="Bold" Visibility="Hidden">
             <TextBlock.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock x:Name="nameP5" HorizontalAlignment="Left" Margin="50,465,0,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bell MT" FontSize="20" Width="161.739130434783" Height="25" TextAlignment="Center" FontWeight="Bold" Visibility="Hidden">
+        <TextBlock x:Name="nameP5" HorizontalAlignment="Right" Margin="0,348,900,0" Text="Name" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bell MT" FontSize="16" Width="120" Height="18.75" TextAlignment="Center" FontWeight="Bold" Visibility="Hidden">
             <TextBlock.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock x:Name="cashP0" HorizontalAlignment="Left" Margin="393,185,0,0" Text="10,000 chips" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="14" Width="162" Height="24" TextAlignment="Center" Visibility="Hidden">
+        <TextBlock x:Name="cashP0" HorizontalAlignment="Left" Margin="294.75,128.75,0,0" Text="10,000 chips" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" Width="120" Height="18.75" TextAlignment="Center" Visibility="Hidden">
             <TextBlock.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock x:Name="cashP1" HorizontalAlignment="Left" Margin="840,185,0,0" Text="10,000 chips" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="14" Width="161" Height="24" TextAlignment="Center" Visibility="Hidden">
+        <TextBlock x:Name="cashP1" HorizontalAlignment="Left" Margin="630,128.75,0,0" Text="10,000 chips" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" Width="120" Height="18.75" TextAlignment="Center" Visibility="Hidden">
             <TextBlock.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock x:Name="cashP2" HorizontalAlignment="Left" Margin="1200,489,0,0" Text="10,000 chips" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="14" Width="161.739130434783" Height="24" TextAlignment="Center" Visibility="Hidden">
+        <TextBlock x:Name="cashP2" HorizontalAlignment="Left" Margin="900,366.75,0,0" Text="10,000 chips" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" Width="120" Height="18.75" TextAlignment="Center" Visibility="Hidden">
             <TextBlock.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock x:Name="cashP3" HorizontalAlignment="Left" Margin="839,731,0,0" Text="10,000 chips" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="14" Width="162" Height="24" TextAlignment="Center" Visibility="Hidden">
+        <TextBlock x:Name="cashP3" HorizontalAlignment="Left" Margin="630,548.25,0,0" Text="10,000 chips" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" Width="120" Height="18.75" TextAlignment="Center" Visibility="Hidden">
             <TextBlock.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock x:Name="cashP4" HorizontalAlignment="Left" Margin="393,731,0,0" Text="10,000 chips" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="14" Width="162" Height="24" TextAlignment="Center" Visibility="Hidden">
+        <TextBlock x:Name="cashP4" HorizontalAlignment="Left" Margin="294.75,548.25,0,0" Text="10,000 chips" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" Width="120" Height="18.75" TextAlignment="Center" Visibility="Hidden">
             <TextBlock.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBlock.Background>
         </TextBlock>
-        <TextBlock x:Name="cashP5" HorizontalAlignment="Left" Margin="50,490,0,0" Text="10,000 chips" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="14" Width="161.739130434783" Height="24" TextAlignment="Center" Visibility="Hidden">
+        <TextBlock x:Name="cashP5" HorizontalAlignment="Right" Margin="0,366.75,900,0" Text="10,000 chips" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" Width="120" Height="18.75" TextAlignment="Center" Visibility="Hidden">
             <TextBlock.Background>
                 <SolidColorBrush Color="White" Opacity="0.2"/>
             </TextBlock.Background>
         </TextBlock>
-        <Grid x:Name="tableGrid" Margin="235,235,235,250">
+        <Grid x:Name="tableGrid" Margin="176.25,176.25,176.25,187.5">
             <Grid.RowDefinitions>
                 <RowDefinition/>
                 <RowDefinition/>
@@ -89,7 +93,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock x:Name="pot0" Text="Pot: 1,000" TextWrapping="Wrap" Grid.Column="2" FontFamily="Bahnschrift" FontSize="20" TextAlignment="Center" Margin="0,80,0,0" FontWeight="Bold" Visibility="Hidden"/>
+            <TextBlock x:Name="pot0" Text="Pot: 1,000" TextWrapping="Wrap" Grid.Column="2" FontFamily="Bahnschrift" FontSize="16" TextAlignment="Center" FontWeight="Normal" Visibility="Hidden" Foreground="White" Margin="0,50,0,0"/>
             <Grid x:Name="communityGrid" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
@@ -100,13 +104,13 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel x:Name="community0" Width="70" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" Margin="5,0,0,0" Grid.Column="1" Visibility="Hidden"/>
-                <StackPanel x:Name="community1" Width="70" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" Margin="5,0,0,0" Grid.Column="2" Visibility="Hidden"/>
-                <StackPanel x:Name="community2" Width="70" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" Margin="5,0,0,0" Grid.Column="3" Visibility="Hidden"/>
-                <StackPanel x:Name="community3" Width="70" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" Margin="5,0,0,0" Grid.Column="4" Visibility="Hidden"/>
-                <StackPanel x:Name="community4" Width="70" Height="100" HorizontalAlignment="Left" VerticalAlignment="Center" Background="White" Margin="5,0,0,0" Grid.Column="5" Visibility="Hidden"/>
+                <StackPanel x:Name="community0" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" Grid.Column="1" Visibility="Hidden"/>
+                <StackPanel x:Name="community1" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" Grid.Column="2" Visibility="Hidden"/>
+                <StackPanel x:Name="community2" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" Grid.Column="3" Visibility="Hidden"/>
+                <StackPanel x:Name="community3" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" Grid.Column="4" Visibility="Hidden"/>
+                <StackPanel x:Name="community4" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Center" Background="White" Grid.Column="5" Visibility="Hidden"/>
             </Grid>
-            <Grid x:Name="sidePotsGrid" Grid.Row="2" Grid.Column="2">
+            <Grid x:Name="sidePotsGrid" Grid.Row="2" Grid.Column="2" Margin="0,0,0,20">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -115,20 +119,20 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <TextBlock x:Name="pot1" Text="1,000" TextWrapping="Wrap" FontFamily="Bahnschrift" FontSize="16" TextAlignment="Center" FontWeight="Bold" Grid.RowSpan="1" Margin="0,30,20,0" Visibility="Hidden"/>
-                <TextBlock x:Name="pot2" Text="1,000" TextWrapping="Wrap" FontFamily="Bahnschrift" FontSize="16" TextAlignment="Center" FontWeight="Bold" Grid.RowSpan="1" Grid.Column="1" Margin="20,30,0,0" Visibility="Hidden"/>
-                <TextBlock x:Name="pot3" Text="1,000" TextWrapping="Wrap" FontFamily="Bahnschrift" FontSize="16" TextAlignment="Center" FontWeight="Bold" Grid.RowSpan="1" Grid.Row="1" Margin="0,0,20,0" Visibility="Hidden"/>
-                <TextBlock x:Name="pot4" Text="1,000" TextWrapping="Wrap" FontFamily="Bahnschrift" FontSize="16" TextAlignment="Center" FontWeight="Bold" Grid.RowSpan="1" Grid.Row="1" Grid.Column="1" Margin="20,0,0,0" Visibility="Hidden"/>
+                <TextBlock x:Name="pot1" Text="1,000" TextWrapping="Wrap" FontFamily="Bahnschrift" TextAlignment="Center" FontWeight="Normal" Grid.RowSpan="1" Visibility="Hidden" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock x:Name="pot2" Text="1,000" TextWrapping="Wrap" FontFamily="Bahnschrift" TextAlignment="Center" FontWeight="Normal" Grid.RowSpan="1" Grid.Column="1" Visibility="Hidden" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock x:Name="pot3" Text="1,000" TextWrapping="Wrap" FontFamily="Bahnschrift" TextAlignment="Center" FontWeight="Normal" Grid.RowSpan="1" Grid.Row="1" Visibility="Hidden" HorizontalAlignment="Stretch" VerticalAlignment="Center" Foreground="White"/>
+                <TextBlock x:Name="pot4" Text="1,000" TextWrapping="Wrap" FontFamily="Bahnschrift" TextAlignment="Center" FontWeight="Normal" Grid.RowSpan="1" Grid.Row="1" Grid.Column="1" Visibility="Hidden" VerticalAlignment="Center" Foreground="White"/>
             </Grid>
             <Grid x:Name="p0Grid" Grid.Column="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel x:Name="card0P0" Width="70" Height="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,10,0,0" Visibility="Hidden" Background="White"/>
-                <StackPanel x:Name="card1P0" Width="70" Height="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="White" Grid.Column="1" Margin="0,10,0,0" Visibility="Hidden"/>
-                <TextBlock x:Name="bettingP0" Text="1,000" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="16" Margin="3,6,0,0" Grid.Column="1" FontWeight="Bold" Visibility="Hidden"/>
-                <Ellipse x:Name="dealer0" Stroke="Black" VerticalAlignment="Top" Width="40" Height="40" HorizontalAlignment="Left" Visibility="Hidden">
+                <StackPanel x:Name="card0P0" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,10,0,0" Visibility="Hidden" Background="White"/>
+                <StackPanel x:Name="card1P0" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="White" Grid.Column="1" Margin="0,10,0,0" Visibility="Hidden"/>
+                <TextBlock x:Name="bettingP0" Text="1,000" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" Margin="3,6,0,0" Grid.Column="1" FontWeight="Normal" Visibility="Hidden" FontSize="14" Foreground="White"/>
+                <Ellipse x:Name="dealer0" Stroke="Black" VerticalAlignment="Top" Width="30" Height="30" HorizontalAlignment="Left" Visibility="Hidden">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="/dealer-bg.jpg"/>
                     </Ellipse.Fill>
@@ -139,10 +143,10 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel x:Name="card0P1" Width="70" Height="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="White" Margin="0,10,0,0" Visibility="Hidden"/>
-                <StackPanel x:Name="card1P1" Width="70" Height="100" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="White" Grid.Column="1" Margin="0,10,0,0" Visibility="Hidden"/>
-                <TextBlock x:Name="bettingP1" Text="1,000" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="16" Margin="0,6,0,0" Grid.Column="1" FontWeight="Bold" Visibility="Hidden"/>
-                <Ellipse x:Name="dealer1" Stroke="Black" VerticalAlignment="Top" Width="40" Height="40" HorizontalAlignment="Left" Visibility="Hidden">
+                <StackPanel x:Name="card0P1" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="White" Margin="0,10,0,0" Visibility="Hidden"/>
+                <StackPanel x:Name="card1P1" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Bottom" Background="White" Grid.Column="1" Margin="0,10,0,0" Visibility="Hidden"/>
+                <TextBlock x:Name="bettingP1" Text="1,000" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" Margin="0,6,0,0" Grid.Column="1" FontWeight="Normal" Visibility="Hidden" FontSize="14" Foreground="White"/>
+                <Ellipse x:Name="dealer1" Stroke="Black" VerticalAlignment="Top" Width="30" Height="30" HorizontalAlignment="Left" Visibility="Hidden">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="/dealer-bg.jpg"/>
                     </Ellipse.Fill>
@@ -153,10 +157,10 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel x:Name="card0P2" Width="70" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Visibility="Hidden"/>
-                <StackPanel x:Name="card1P2" Width="70" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Grid.Column="1" Visibility="Hidden"/>
-                <TextBlock x:Name="bettingP2" Text="1,000" TextWrapping="Wrap" VerticalAlignment="Bottom" FontFamily="Bahnschrift" FontSize="16" Margin="0,0,0,6" FontWeight="Bold" TextAlignment="Right" Visibility="Hidden"/>
-                <Ellipse x:Name="dealer2" Stroke="Black" VerticalAlignment="Bottom" Width="40" Height="40" HorizontalAlignment="Right" Grid.Column="1" Visibility="Hidden">
+                <StackPanel x:Name="card0P2" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Visibility="Hidden"/>
+                <StackPanel x:Name="card1P2" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Grid.Column="1" Visibility="Hidden"/>
+                <TextBlock x:Name="bettingP2" Text="1,000" TextWrapping="Wrap" VerticalAlignment="Bottom" FontFamily="Bahnschrift" Margin="0,0,0,6" FontWeight="Normal" TextAlignment="Right" Visibility="Hidden" FontSize="14" Foreground="White"/>
+                <Ellipse x:Name="dealer2" Stroke="Black" VerticalAlignment="Bottom" Width="30" Height="30" HorizontalAlignment="Right" Grid.Column="1" Visibility="Hidden">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="/dealer-bg.jpg"/>
                     </Ellipse.Fill>
@@ -167,10 +171,10 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel x:Name="card0P3" Width="70" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Margin="0,0,0,10" Visibility="Hidden"/>
-                <StackPanel x:Name="card1P3" Width="70" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Grid.Column="1" Margin="0,0,0,10" Visibility="Hidden"/>
-                <TextBlock x:Name="bettingP3" Text="1,000" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="16" Margin="0,127,0,0" Grid.Column="1" FontWeight="Bold" Visibility="Hidden"/>
-                <Ellipse x:Name="dealer3" Stroke="Black" VerticalAlignment="Bottom" Width="40" Height="40" HorizontalAlignment="Left" Visibility="Hidden">
+                <StackPanel x:Name="card0P3" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Margin="0,0,0,10" Visibility="Hidden"/>
+                <StackPanel x:Name="card1P3" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Grid.Column="1" Margin="0,0,0,10" Visibility="Hidden"/>
+                <TextBlock x:Name="bettingP3" Text="1,000" TextWrapping="Wrap" VerticalAlignment="Bottom" FontFamily="Bahnschrift" Grid.Column="1" FontWeight="Normal" Visibility="Hidden" FontSize="14" Foreground="White" Margin="0,0,0,10"/>
+                <Ellipse x:Name="dealer3" Stroke="Black" VerticalAlignment="Bottom" Width="30" Height="30" HorizontalAlignment="Left" Visibility="Hidden">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="/dealer-bg.jpg"/>
                     </Ellipse.Fill>
@@ -181,10 +185,10 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel x:Name="card0P4" Width="70" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Margin="0,0,0,10" Visibility="Hidden"/>
-                <StackPanel x:Name="card1P4" Width="70" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Grid.Column="1" Margin="0,0,0,10" Visibility="Hidden"/>
-                <TextBlock x:Name="bettingP4" Text="1,000" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="16" Margin="0,127,0,0" Grid.Column="1" FontWeight="Bold" Visibility="Hidden"/>
-                <Ellipse x:Name="dealer4" Stroke="Black" VerticalAlignment="Bottom" Width="40" Height="40" HorizontalAlignment="Left" Visibility="Hidden">
+                <StackPanel x:Name="card0P4" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Margin="0,0,0,10" Visibility="Hidden"/>
+                <StackPanel x:Name="card1P4" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Grid.Column="1" Margin="0,0,0,10" Visibility="Hidden"/>
+                <TextBlock x:Name="bettingP4" Text="1,000" TextWrapping="Wrap" VerticalAlignment="Bottom" FontFamily="Bahnschrift" Margin="0,0,0,10" Grid.Column="1" FontWeight="Normal" Visibility="Hidden" FontSize="14" Foreground="White"/>
+                <Ellipse x:Name="dealer4" Stroke="Black" VerticalAlignment="Bottom" Width="30" Height="30" HorizontalAlignment="Left" Visibility="Hidden">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="/dealer-bg.jpg"/>
                     </Ellipse.Fill>
@@ -195,18 +199,18 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <StackPanel x:Name="card0P5" Width="70" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Visibility="Hidden"/>
-                <StackPanel x:Name="card1P5" Width="70" Height="100" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Grid.Column="1" Visibility="Hidden"/>
-                <TextBlock x:Name="bettingP5" Text="1,000" TextWrapping="Wrap" VerticalAlignment="Top" FontFamily="Bahnschrift" FontSize="16" Margin="0,127,0,0" Grid.Column="1" FontWeight="Bold" Visibility="Hidden"/>
-                <Ellipse x:Name="dealer5" Stroke="Black" VerticalAlignment="Bottom" Width="40" Height="40" HorizontalAlignment="Left" Visibility="Hidden">
+                <StackPanel x:Name="card0P5" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Visibility="Hidden"/>
+                <StackPanel x:Name="card1P5" Width="50" Height="70" HorizontalAlignment="Center" VerticalAlignment="Top" Background="White" Grid.Column="1" Visibility="Hidden"/>
+                <TextBlock x:Name="bettingP5" Text="1,000" TextWrapping="Wrap" VerticalAlignment="Bottom" FontFamily="Bahnschrift" Grid.Column="1" FontWeight="Normal" Visibility="Hidden" FontSize="14" Foreground="White" Margin="0,0,0,10"/>
+                <Ellipse x:Name="dealer5" Stroke="Black" VerticalAlignment="Bottom" Width="30" Height="30" HorizontalAlignment="Left" Visibility="Hidden">
                     <Ellipse.Fill>
                         <ImageBrush ImageSource="/dealer-bg.jpg"/>
                     </Ellipse.Fill>
                 </Ellipse>
             </Grid>
         </Grid>
-        <StackPanel x:Name="actionPanel" Width="350" Height="200" HorizontalAlignment="Left" VerticalAlignment="Bottom" Visibility="Hidden">
-            <Grid Height="200">
+        <StackPanel x:Name="actionPanel" Width="262.5" HorizontalAlignment="Left" VerticalAlignment="Stretch" Visibility="Hidden" Grid.Row="1">
+            <Grid Height="150">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
@@ -216,27 +220,40 @@
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="checkCallButton" Content="Check/Call" Width="120" Height="40" FontSize="20" Grid.Row="2" VerticalAlignment="Top" Click="checkCallButton_Click"/>
-                <Button x:Name="foldButton" Content="Fold" Width="120" Height="40" FontSize="20" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Click="foldButton_Click"/>
-                <Button x:Name="betButton" Content="Bet" Width="120" Height="40" FontSize="20" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Click="betButton_Click"/>
-                <TextBox x:Name="betAmount" Text="10000" TextWrapping="Wrap" Width="120" Height="40" FontSize="20" TextAlignment="Center" Grid.Row="1" IsTabStop="False" AllowDrop="False" MaxLines="1" MaxLength="10" VerticalAlignment="Top" InputScope="Digits" PreviewTextInput="betAmount_PreviewTextInput" LostFocus="betAmount_LostFocus"/>
+                <Button x:Name="checkCallButton" Content="Check/Call" Width="90" Height="30" FontSize="16" Grid.Row="2" VerticalAlignment="Top" Click="checkCallButton_Click"/>
+                <Button x:Name="foldButton" Content="Fold" Width="90" Height="30" FontSize="16" Grid.Row="2" Grid.Column="1" VerticalAlignment="Top" Click="foldButton_Click"/>
+                <Button x:Name="betButton" Content="Bet" Width="90" Height="30" FontSize="16" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Click="betButton_Click"/>
+                <TextBox x:Name="betAmount" Text="10000" TextWrapping="Wrap" Width="90" Height="30" FontSize="16" TextAlignment="Center" Grid.Row="1" IsTabStop="False" AllowDrop="False" MaxLines="1" MaxLength="10" VerticalAlignment="Top" InputScope="Digits" PreviewTextInput="betAmount_PreviewTextInput" LostFocus="betAmount_LostFocus"/>
             </Grid>
         </StackPanel>
-        <StackPanel x:Name="gmPanel" Width="300" Height="200" HorizontalAlignment="Right" VerticalAlignment="Bottom" Visibility="Hidden">
-            <Grid Height="200">
+        <StackPanel x:Name="gmPanel" Width="225" Height="150" HorizontalAlignment="Right" VerticalAlignment="Top" Visibility="Hidden" Margin="0,10,0,0">
+            <Grid Height="147">
                 <Grid.RowDefinitions>
                     <RowDefinition/>
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
-                <Button x:Name="startButton" Content="START NEW GAME" Margin="0,0,20,0" FontSize="20" Click="startButton_Click"/>
-                <TextBox x:Name="sbTextBox" Text="0" TextWrapping="Wrap" Width="50" Grid.Row="1" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Margin="30,0,0,0"/>
-                <TextBox x:Name="bbTextBox" Text="0" TextWrapping="Wrap" Width="50" Grid.Row="1" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Margin="150,0,0,0"/>
-                <Button x:Name="blindsButton" Content="Set Blinds" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,20,0" Width="70" FontSize="14" Height="25" Click="blindsButton_Click"/>
-                <TextBox x:Name="commandTextBox" Text="Game Master command" TextWrapping="Wrap" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Width="200" FontSize="14"/>
-                <Button x:Name="sendButton" Content="Send" Grid.Row="2" Margin="0,0,20,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" Height="25" FontSize="14" Click="sendButton_Click"/>
-                <Label Content="BB" Grid.Row="1" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="120,0,0,0"/>
+                <Button x:Name="startButton" Content="START NEW GAME" Margin="0,0,10,0" FontSize="20" Click="startButton_Click"/>
+                <TextBox x:Name="sbTextBox" Text="0" TextWrapping="Wrap" Width="35" Grid.Row="1" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Margin="30,0,0,0"/>
+                <TextBox x:Name="bbTextBox" Text="0" TextWrapping="Wrap" Width="35" Grid.Row="1" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Margin="100,0,0,0"/>
+                <Button x:Name="blindsButton" Content="Set Blinds" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,10,0" Width="70" Height="25" Click="blindsButton_Click"/>
+                <TextBox x:Name="commandTextBox" Text="GM command" TextWrapping="Wrap" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Center" Height="25" Width="135"/>
+                <Button x:Name="sendButton" Content="Send" Grid.Row="2" Margin="0,0,10,0" HorizontalAlignment="Right" VerticalAlignment="Center" Width="70" Height="25" Click="sendButton_Click"/>
+                <Label Content="BB" Grid.Row="1" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Margin="70,0,0,0"/>
                 <Label Content="SB" Grid.Row="1" FontSize="14" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White"/>
+            </Grid>
+        </StackPanel>
+        <StackPanel x:Name="chatPanel" VerticalAlignment="Top" HorizontalAlignment="Right" Width="525" Height="120" Margin="0,15,10,0" Orientation="Vertical" Grid.Row="1">
+            <Grid Height="120">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition Height="25
+                                   "/>
+                </Grid.RowDefinitions>
+                <ListView x:Name="chatView" ItemsSource="{Binding}" HorizontalContentAlignment="Stretch"/>
+                <TextBox x:Name="chatTextBox" TextWrapping="NoWrap" Grid.Row="1" VerticalAlignment="Bottom" Width="420" HorizontalAlignment="Left" Height="20" GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus" TextChanged="chatTextBox_TextChanged" KeyDown="chatTextBox_KeyDown"/>
+                <Button x:Name="sendChatButton" Content="Send" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="40" Grid.Row="1" Height="20" Click="sendChatButton_Click" Margin="0,0,50,0"/>
+                <Button x:Name="clearButton" Content="Clear" HorizontalAlignment="Right" VerticalAlignment="Bottom" Width="40" Grid.Row="1" Height="20" Click="clearButton_Click"/>
             </Grid>
         </StackPanel>
     </Grid>

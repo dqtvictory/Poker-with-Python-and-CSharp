@@ -2,25 +2,25 @@
 Handles the connection between server and clients, and network protocols, etc...
 """
 
-
 import socketserver
 from Game import Game
 
 
 SERVER_IP = "127.0.0.1"
 PORT = 11000
-BUFFER = 1024  # Buffer size to receive message over the network
+BUFFER = 1024  # Buffer size (in bytes) to receive message over the network
 
 # Protocols for parsing message from client
 RECV_PROTOCOL = {
     'disconnect': "-1",
-    'end_of_msg': "$",
     'connected': "00",
     'start': "01",
     'blind': "02",
     'action': "03",
     'chat': "04",
-    'stack': "05"
+    'stack': "05",
+    'request_state': "06",
+    'end_of_msg': "$",
 }
 
 
@@ -67,21 +67,34 @@ class ServerReqHandler(socketserver.BaseRequestHandler):
 
         elif protocol == RECV_PROTOCOL['connected']:
             # First message received from client when connected. Example: 00 TrungDam
-            player = game.add_player(command, self.request)
-            self.player = player
+            # If name already exists, changes it so it's unique
+            name = command
+            name_changed = False
+            i = 0
+            while not game.check_name_exist(name):
+                name += str(i)
+                i += 1
+                name_changed = True
+            player = game.add_player(name, self.request, name_changed)
+            if player:
+                self.player = player
 
         elif protocol == RECV_PROTOCOL['start']:
             # Game master's order to start a new game. Example: 01
-            if not game.on:
-                game.new_game()
+            if self.player.gm and not game.on:
+                if game.can_start():
+                    game.new_game()
+                else:
+                    self.player.send_to_client('message', "Game cannot start. Not enough player to play, or blind not set.")
 
         elif protocol == RECV_PROTOCOL['blind']:
             # Game master's order to set small & big blinds. Example: 02 50:100
-            SEPERATOR = ':'
-            i = command.find(SEPERATOR)
-            sb = int(command[:i])
-            bb = int(command[i+1:])
-            game.set_blinds(sb, bb)
+            if self.player.gm:
+                SEPERATOR = ':'
+                i = command.find(SEPERATOR)
+                sb = int(command[:i])
+                bb = int(command[i+1:])
+                game.set_blinds(sb, bb)
 
         elif protocol == RECV_PROTOCOL['action']:
             # A player's action during a game. Example: 03 3 0
@@ -99,13 +112,22 @@ class ServerReqHandler(socketserver.BaseRequestHandler):
             game.act(self.player, ACTIONS[i], amt)
 
         elif protocol == RECV_PROTOCOL['chat']:
-            game.chat.update_chat(f"{self.player}: {command}")
+            # A player's chat message
+            echo_message = f"{self.player}: {command}"
+            game.chat.update_chat(echo_message)
+            game.send_all('message', echo_message)
 
         elif protocol == RECV_PROTOCOL['stack']:
             # Game master's order to set a player's stack. Example: 02 1 -15
-            info = command.split(' ')
-            game.players[int(info[0])].modify_stack(int(info[1]))
-            game.send_game_state()
+            if self.player.gm:
+                info = command.split(' ')
+                game.players[int(info[0])].modify_stack(int(info[1]))
+                game.send_game_state()
+
+        elif protocol == RECV_PROTOCOL['request_state']:
+            # Game master's request of game's state, often occurs after announcement of winners
+            if self.player.gm:
+                game.send_game_state()
 
         return int(protocol)
 
